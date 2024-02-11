@@ -9,7 +9,8 @@ import {
   Button
 } from '@chakra-ui/react';
 import { ArrowForwardIcon } from '@chakra-ui/icons';
-import LogoSvg from '../assets/logo.svg';
+import LogoSvg from '../../assets/logo.svg';
+import { MenuConfig, ButtonGroupConfig } from './config';
 
 const Header = () => (
   <Box as="header" fontFamily="Gilroy-Regular">
@@ -17,7 +18,7 @@ const Header = () => (
       fontSize={13}
       color="#22253B"
       w="87%"
-      /*minHeight="51px"*/ bg="white"
+      bg="white"
       m=" 57px auto 22px"
       borderRadius="full"
       align="center"
@@ -34,51 +35,34 @@ const Header = () => (
         ml={50}
         spacing={9}
         flex="1">
-        <BreadcrumbItem isCurrentPage>
-          <BreadcrumbLink href="#">Чему вы научитесь</BreadcrumbLink>
-        </BreadcrumbItem>
-
-        <BreadcrumbItem>
-          <BreadcrumbLink href="#">Процесс обучения</BreadcrumbLink>
-        </BreadcrumbItem>
-
-        <BreadcrumbItem>
-          <BreadcrumbLink href="#">Стоимость</BreadcrumbLink>
-        </BreadcrumbItem>
-
-        <BreadcrumbItem>
-          <BreadcrumbLink href="#">Контакты</BreadcrumbLink>
-        </BreadcrumbItem>
+        {MenuConfig.map(({ href, text }) => (
+          <BreadcrumbItem key={text}>
+            <BreadcrumbLink href={href}>{text}</BreadcrumbLink>
+          </BreadcrumbItem>
+        ))}
       </Breadcrumb>
       <ButtonGroup bg="transparent" mr={11}>
-        <Button
-          bg="transparent"
-          borderRadius="full"
-          fontSize={13}
-          fontWeight="normal"
-          p="8.87px 14.95px"
-          cursor="pointer"
-          _hover={{ bg: '#38BFF2', color: '#FFFFFF', transition: '0.5s' }}>
-          Регистрация
-        </Button>
-        <Button
-          bg="transparent"
-          borderRadius="full"
-          fontSize={13}
-          fontWeight="normal"
-          p="8.87px 14.95px"
-          cursor="pointer"
-          _hover={{ bg: '#38BFF2', color: '#FFFFFF', transition: '0.5s' }}>
-          <ArrowForwardIcon bg="transparent" mr={1} />
-          Войти
-        </Button>
+        {ButtonGroupConfig.map(({ icon, text }) => (
+          <Button
+            key={text}
+            bg="transparent"
+            borderRadius="full"
+            fontSize={13}
+            fontWeight="normal"
+            p="8.87px 14.95px"
+            cursor="pointer"
+            _hover={{ bg: '#38BFF2', color: '#FFFFFF', transition: '0.5s' }}>
+            {icon}
+            {text}
+          </Button>
+        ))}
       </ButtonGroup>
     </Flex>
     <Flex
       fontSize={13}
       color="#22253B"
       maxWidth="87%"
-      /*minHeight="51px"*/ bg="white"
+      bg="white"
       m=" 0 auto 22px"
       borderRadius="full"
       align="center"
