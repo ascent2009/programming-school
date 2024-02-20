@@ -1,3 +1,5 @@
+import { useState, useEffect, useCallback, memo } from 'react';
+import { useForm, SubmitHandler } from 'react-hook-form';
 import {
   Box,
   Flex,
@@ -11,23 +13,148 @@ import {
   FormControl,
   FormLabel,
   Switch,
-  Stack
+  Stack,
+  HStack,
+  Text,
+  Modal,
+  ModalOverlay,
+  ModalContent,
+  ModalHeader,
+  ModalFooter,
+  ModalBody,
+  ModalCloseButton,
+  useDisclosure,
+  Input,
+  FormErrorMessage
 } from '@chakra-ui/react';
-import { SunIcon, MoonIcon } from '@chakra-ui/icons';
+import { SunIcon, MoonIcon, ViewIcon } from '@chakra-ui/icons';
 
 import LogoSvg from '../../assets/logo.svg';
 import { MenuConfig, ButtonGroupConfig } from './config';
 
+interface IModal {
+  firstName: string;
+  lastName: string;
+  email: string;
+  password: string;
+}
+
+type Login = Omit<IModal, 'firstName' | 'lastName'>;
+
 const Header = () => {
   const { colorMode, toggleColorMode } = useColorMode();
+  const { onOpen, isOpen, onClose } = useDisclosure();
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors, isSubmitting }
+  } = useForm<IModal>();
 
   const bgRoot = colorMode === 'light' ? '#eaf2f5' : '';
+  const bgModal = colorMode === 'light' ? '#eaf2f5' : 'gray.700';
   const bg = colorMode === 'light' ? '#38BFF2' : '#F15525';
   const color = colorMode === 'light' ? '#22253B' : '#F15525';
   const checked = colorMode === 'light' ? false : true;
   const colorBorderSwitch = colorMode === 'light' ? '#eaf2f5' : '#ffffff';
   const opacityLight = colorMode === 'light' ? '0.3' : '1';
   const opacityDark = colorMode === 'light' ? '1' : '0.3';
+
+  const defaultValues = {
+    firstName: '',
+    lastName: '',
+    email: '',
+    password: ''
+  };
+  const [isVisible, setIsVisible] = useState(false);
+  const [isLogin, setIsLogin] = useState(false);
+  const [registered, setRegistered] = useState<IModal[]>(
+    JSON.parse(localStorage.getItem('register') as string) || []
+  );
+  const [alert, setAlert] = useState<string | null>(null);
+
+  useEffect(() => {
+    localStorage.setItem('register', JSON.stringify(registered));
+  }, [registered]);
+
+  const onSubmit: SubmitHandler<IModal> = useCallback(
+    (data) => {
+      setAlert(null);
+      const search = (source: IModal[], data: IModal) => {
+        let found = false;
+        source.forEach((s) => {
+          if (s['email'] === data['email']) {
+            found = true;
+          }
+        });
+        return found;
+      };
+      if (search(registered, data)) {
+        setAlert('Пользователь с таким e-mail уже зарегистрирован!');
+      } else {
+        setRegistered([...registered, data]);
+        // localStorage.setItem('register', JSON.stringify(registered));
+        reset(defaultValues);
+        setTimeout(() => {
+          onClose();
+          setIsLogin(false);
+        }, 1000);
+        setAlert('Пользователь зарегистрирован!');
+      }
+      // console.log(JSON.stringify(registered, null, 2));
+      console.log(registered);
+    },
+    [onClose, registered, reset]
+  );
+
+  const onSubmitLogin: SubmitHandler<Login> = useCallback(
+    (res) => {
+      setAlert(null);
+      const search = (source: IModal[], result: Login) => {
+        let found = false;
+        source.forEach((s) => {
+          if (s['email'] === result['email'] && s['password'] === result['password']) {
+            found = true;
+          }
+        });
+        return found;
+      };
+      if (search(registered, res)) {
+        setAlert('Вход успешен!');
+        reset();
+        setTimeout(() => {
+          onClose();
+          setIsLogin(false);
+        }, 1000);
+      } else {
+        setAlert('Неверный логин или пароль');
+      }
+    },
+    [onClose, registered, reset]
+  );
+
+  const onCloseModal = () => {
+    reset(defaultValues);
+    setAlert(null);
+    setTimeout(() => {
+      onClose();
+      setIsLogin(false);
+    }, 500);
+  };
+
+  const onLogin = (id: string) => {
+    if (id === 'login') {
+      setIsLogin(true);
+    }
+    // console.log(isLogin, id);
+    onOpen();
+    setAlert(null);
+  };
+
+  const toggleForms = () => {
+    setIsLogin(!isLogin);
+    setAlert(null);
+  };
 
   return (
     <Box as="header" fontFamily="Gilroy-Regular" bg={bgRoot}>
@@ -73,7 +200,7 @@ const Header = () => {
             ))}
           </Breadcrumb>
           <ButtonGroup bg="transparent" mr={11}>
-            {ButtonGroupConfig.map(({ icon, text }) => (
+            {ButtonGroupConfig.map(({ icon, text, id }) => (
               <Button
                 key={text}
                 bg="transparent"
@@ -84,6 +211,7 @@ const Header = () => {
                 fontWeight="normal"
                 p="8.87px 14.95px"
                 cursor="pointer"
+                onClick={() => onLogin(id)}
                 _hover={{ bg: bg, color: '#FFFFFF', transition: '0.5s' }}>
                 {icon}
                 {text}
@@ -96,7 +224,7 @@ const Header = () => {
           display="flex"
           alignItems="center"
           justifyContent="space-between"
-          w="6%"
+          maxW="6%"
           mt={35}>
           <FormLabel htmlFor="light" title="Дневной режим" m={0}>
             <SunIcon color="#38BFF2" opacity={opacityLight} />
@@ -114,8 +242,120 @@ const Header = () => {
           </FormLabel>
         </FormControl>
       </Stack>
+      <Modal
+        // initialFocusRef={initialRef}
+        // finalFocusRef={finalRef}
+        isOpen={isOpen}
+        onClose={onClose}
+        // size="lg"
+      >
+        <ModalOverlay />
+        <ModalContent
+          fontFamily="Gilroy-Regular"
+          bg={bgModal}
+          as="form"
+          onSubmit={handleSubmit(!isLogin ? onSubmit : onSubmitLogin)}>
+          <ModalHeader>{!isLogin ? 'Создать учетную запись' : 'Войти в профиль'}</ModalHeader>
+          <ModalCloseButton />
+          <ModalBody pb={6}>
+            <FormControl
+              isInvalid={false}
+              isRequired={!isLogin ? true : false}
+              display={!isLogin ? '' : 'none'}>
+              <FormLabel htmlFor="firstName">Имя</FormLabel>
+              <Input
+                id="firstName"
+                // ref={initialRef}
+                type="text"
+                placeholder="Имя"
+                {...register('firstName', { required: !isLogin ? true : false })}
+                // ref={initialRef}
+                bg={colorMode === 'light' ? '#ffffff' : 'transparent'}
+              />
+              <FormErrorMessage>{errors.firstName && errors.firstName.message}</FormErrorMessage>
+            </FormControl>
+
+            <FormControl
+              mt={4}
+              isInvalid={false}
+              isRequired={!isLogin ? true : false}
+              display={!isLogin ? '' : 'none'}>
+              <FormLabel htmlFor="lastName">Фамилия</FormLabel>
+              <Input
+                id="lastName"
+                type="text"
+                placeholder="Фамилия"
+                {...register('lastName', { required: !isLogin ? true : false })}
+                bg={colorMode === 'light' ? '#ffffff' : 'transparent'}
+              />
+              <FormErrorMessage>{errors.lastName && errors.lastName.message}</FormErrorMessage>
+            </FormControl>
+            <FormControl mt={4} isInvalid={false} isRequired>
+              <FormLabel htmlFor="email">Электронная почта</FormLabel>
+              <Input
+                id="email"
+                type="email"
+                placeholder="e-mail"
+                {...register('email', { required: true })}
+                bg={colorMode === 'light' ? '#ffffff' : 'transparent'}
+              />
+              <FormErrorMessage>{errors.email && errors.email.message}</FormErrorMessage>
+            </FormControl>
+            <FormControl mt={4} isInvalid={false} isRequired>
+              <FormLabel htmlFor="password">Пароль</FormLabel>
+              <HStack>
+                <Input
+                  id="password"
+                  type={isVisible ? 'text' : 'password'}
+                  placeholder="пароль"
+                  {...register('password', { required: true })}
+                  bg={colorMode === 'light' ? '#ffffff' : 'transparent'}
+                  position="relative"
+                />
+
+                <ViewIcon
+                  position="absolute"
+                  cursor="pointer"
+                  right={5}
+                  onClick={() => {
+                    setIsVisible(!isVisible);
+                  }}
+                />
+              </HStack>
+
+              <FormErrorMessage>{errors.password && errors.password.message}</FormErrorMessage>
+            </FormControl>
+          </ModalBody>
+
+          <ModalFooter display="flex" flexDirection="column" gap={10}>
+            <Text color={bg} fontWeight={700}>
+              {alert}
+            </Text>
+            <Flex direction="column">
+              <Text textAlign="center">
+                {!isLogin ? 'Уже есть учетная запись?' : 'Еще нет учетной записи?'}
+              </Text>
+              <Button
+                p={0}
+                m={0}
+                bg="transparent"
+                fontWeight={400}
+                _hover={{ color: bg, transition: '0.5s', textDecoration: 'none' }}
+                onClick={toggleForms}>
+                {!isLogin ? 'Перейдите на окно вxода' : 'Зарегистрируйтесь'}
+              </Button>
+            </Flex>
+            <Flex justify="right">
+              <Button colorScheme="blue" mr={3} type="submit" bg={bg} isLoading={isSubmitting}>
+                {!isLogin ? 'Зарегистрироваться' : 'Войти'}
+              </Button>
+              <Button onClick={onCloseModal}>Выйти</Button>
+            </Flex>
+          </ModalFooter>
+        </ModalContent>
+      </Modal>
     </Box>
   );
 };
 
-export default Header;
+export default memo(Header);

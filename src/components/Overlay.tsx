@@ -1,6 +1,7 @@
 import { Box, useColorMode } from '@chakra-ui/react';
 import StartPage from './pages/StartPage';
 import Header from './Header/Header';
+import Auth from './Auth';
 
 const Overlay = () => {
   const { colorMode } = useColorMode();
@@ -8,6 +9,7 @@ const Overlay = () => {
   return (
     <Box bg={bgRoot}>
       <Header />
+      <Auth />
       <StartPage />
     </Box>
   );
