@@ -7,6 +7,7 @@ import {
   BreadcrumbItem,
   BreadcrumbLink,
   Image,
+  Icon,
   ButtonGroup,
   Button,
   useColorMode,
@@ -27,7 +28,9 @@ import {
   Input,
   FormErrorMessage
 } from '@chakra-ui/react';
+
 import { SunIcon, MoonIcon, ViewIcon } from '@chakra-ui/icons';
+import { LuLogOut } from 'react-icons/lu';
 
 import LogoSvg from '../../assets/logo.svg';
 import { MenuConfig, ButtonGroupConfig } from './config';
@@ -71,11 +74,15 @@ const Header = () => {
   const [registered, setRegistered] = useState<IModal[]>(
     JSON.parse(localStorage.getItem('register') as string) || []
   );
+  const [user, setUser] = useState<IModal['email']>(
+    JSON.parse(localStorage.getItem('user') as string) || ''
+  );
   const [alert, setAlert] = useState<string | null>(null);
 
   useEffect(() => {
     localStorage.setItem('register', JSON.stringify(registered));
-  }, [registered]);
+    localStorage.setItem('user', JSON.stringify(user));
+  }, [registered, user]);
 
   const onSubmit: SubmitHandler<IModal> = useCallback(
     (data) => {
@@ -125,6 +132,7 @@ const Header = () => {
         setTimeout(() => {
           onClose();
           setIsLogin(false);
+          setUser(res['email']);
         }, 1000);
       } else {
         setAlert('Неверный логин или пароль');
@@ -149,6 +157,10 @@ const Header = () => {
     // console.log(isLogin, id);
     onOpen();
     setAlert(null);
+  };
+
+  const onLogout = () => {
+    setUser('');
   };
 
   const toggleForms = () => {
@@ -199,25 +211,41 @@ const Header = () => {
               </BreadcrumbItem>
             ))}
           </Breadcrumb>
-          <ButtonGroup bg="transparent" mr={11}>
-            {ButtonGroupConfig.map(({ icon, text, id }) => (
+          {user ? (
+            <ButtonGroup bg="transparent" mr={11}>
+              <Button color={color} bg="transparent" borderRadius="full">
+                {user}
+              </Button>
               <Button
-                key={text}
+                onClick={onLogout}
+                color={color}
                 bg="transparent"
                 borderRadius="full"
-                // color="#22253B"
-                color={color}
-                fontSize={13}
-                fontWeight="normal"
-                p="8.87px 14.95px"
-                cursor="pointer"
-                onClick={() => onLogin(id)}
-                _hover={{ bg: bg, color: '#FFFFFF', transition: '0.5s' }}>
-                {icon}
-                {text}
+                title="Выйти из профиля">
+                <Icon as={LuLogOut} />
               </Button>
-            ))}
-          </ButtonGroup>
+            </ButtonGroup>
+          ) : (
+            <ButtonGroup bg="transparent" mr={11}>
+              {ButtonGroupConfig.map(({ icon, text, id }) => (
+                <Button
+                  key={text}
+                  bg="transparent"
+                  borderRadius="full"
+                  // color="#22253B"
+                  color={color}
+                  fontSize={13}
+                  fontWeight="normal"
+                  p="8.87px 14.95px"
+                  cursor="pointer"
+                  onClick={() => onLogin(id)}
+                  _hover={{ bg: bg, color: '#FFFFFF', transition: '0.5s' }}>
+                  {icon}
+                  {text}
+                </Button>
+              ))}
+            </ButtonGroup>
+          )}
         </Flex>
 
         <FormControl
