@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback, memo } from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
-import { useNavigate } from 'react-router-dom';
+// import { useNavigate } from 'react-router-dom';
 import {
   Box,
   Flex,
@@ -54,7 +54,7 @@ const Header = () => {
     reset,
     formState: { errors, isSubmitting }
   } = useForm<IModal>();
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   const bgRoot = colorMode === 'light' ? '#eaf2f5' : '';
   const bgModal = colorMode === 'light' ? '#eaf2f5' : 'gray.700';
@@ -135,8 +135,8 @@ const Header = () => {
           onClose();
           setIsLogin(false);
           setUser(res['email']);
-          navigate(`/${user}`);
-          window.location.reload();
+          // navigate(`/${user}`);
+          // window.location.reload();
         }, 1000);
       } else {
         setAlert('Неверный логин или пароль');
@@ -378,10 +378,18 @@ const Header = () => {
               </Button>
             </Flex>
             <Flex justify="right">
-              <Button colorScheme="blue" mr={3} type="submit" bg={bg} isLoading={isSubmitting}>
+              <Button
+                colorScheme="blue"
+                mr={3}
+                type="submit"
+                bg={bg}
+                isLoading={isSubmitting}
+                borderRadius="full">
                 {!isLogin ? 'Зарегистрироваться' : 'Войти'}
               </Button>
-              <Button onClick={onCloseModal}>Выйти</Button>
+              <Button onClick={onCloseModal} borderRadius="full">
+                Выйти
+              </Button>
             </Flex>
           </ModalFooter>
         </ModalContent>

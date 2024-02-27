@@ -10,19 +10,20 @@ import {
   ListItem,
   useColorMode
 } from '@chakra-ui/react';
-import ArrowSvg from '../../assets/diagonal-arrow.svg';
+// import ArrowSvg from '../../assets/diagonal-arrow.svg';
 import { MenuConfig, ImagesConfig } from './config';
 import SocialsIcons from '../SocialsIcons';
+import Test from '../Test';
 
 const StartPage = () => {
   const { colorMode } = useColorMode();
 
-  const bg = colorMode === 'light' ? '#38BFF2' : '#F15525';
+  // const bg = colorMode === 'light' ? '#38BFF2' : '#F15525';
   const color = colorMode === 'light' ? '#22253B' : '#F15525';
 
   return (
     <Box as="main" w="87%" mt="37px" mx="auto" fontFamily="Gilroy-Regular" bg="transparent">
-      <Flex as="section" gap={69}>
+      {/* <Flex as="section" gap={69}>
         <Button
           bg={bg}
           p="35px 41px"
@@ -35,8 +36,9 @@ const StartPage = () => {
           </Text>
           <Image src={ArrowSvg} alt="diagonal arrow" ml={3} />
         </Button>
-      </Flex>
-
+        
+      </Flex> */}
+      <Test />
       <SocialsIcons />
       <Flex as="section" fontSize={13} mt={99} w="25%" gap="60px">
         <List
