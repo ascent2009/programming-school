@@ -1,18 +1,16 @@
 import { Box, useColorMode } from '@chakra-ui/react';
-import StartPage from './pages/StartPage';
+import { Outlet } from 'react-router-dom';
 import Header from './Header/Header';
-import Auth from './Auth';
 
-const Overlay = () => {
+const Layout = () => {
   const { colorMode } = useColorMode();
   const bgRoot = colorMode === 'light' ? '#eaf2f5' : '';
   return (
     <Box bg={bgRoot}>
       <Header />
-      <Auth />
-      <StartPage />
+      <Outlet />
     </Box>
   );
 };
 
-export default Overlay;
+export default Layout;

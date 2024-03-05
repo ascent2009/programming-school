@@ -8,6 +8,7 @@
 }
 
 body {
+  /* background-image: url('./assets/bg-circles.png'); */
   font-family: 'Gilroy-Regular';
 }
 
@@ -16,3 +17,8 @@ ol,
 li {
   background: transparent;
 }
+
+/* main {
+  background-image: url('./assets/bg-circles.png');
+  background-repeat: no-repeat;
+} */

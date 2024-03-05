@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback, memo } from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
-// import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import {
   Box,
   Flex,
@@ -54,7 +54,7 @@ const Header = () => {
     reset,
     formState: { errors, isSubmitting }
   } = useForm<IModal>();
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
 
   const bgRoot = colorMode === 'light' ? '#eaf2f5' : '';
   const bgModal = colorMode === 'light' ? '#eaf2f5' : 'gray.700';
@@ -135,8 +135,7 @@ const Header = () => {
           onClose();
           setIsLogin(false);
           setUser(res['email']);
-          // navigate(`/${user}`);
-          // window.location.reload();
+          navigate('/main' + `/${user}`.slice(0, `/${user}`.indexOf('@')));
         }, 1000);
       } else {
         setAlert('Неверный логин или пароль');
@@ -165,6 +164,7 @@ const Header = () => {
 
   const onLogout = () => {
     setUser('');
+    navigate('/');
   };
 
   const toggleForms = () => {

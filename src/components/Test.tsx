@@ -1,5 +1,6 @@
 /* eslint-disable react/prop-types */
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import {
   Modal,
   ModalOverlay,
@@ -79,6 +80,7 @@ const Test = () => {
   const [value, setValue] = useState('1');
   const [correctAnswer, setCorrectAnswer] = useState(false);
   const [testResult, setTestResult] = useState(false);
+  const navigate = useNavigate();
 
   const onCloseModal = () => {
     onClose();
@@ -292,6 +294,7 @@ const Test = () => {
                 setStepOne(false);
                 setTestResult(false);
                 onCloseResult();
+                navigate('/main');
               }}
               borderRadius="full">
               <Text color="white" fontSize={15}>

@@ -2,7 +2,7 @@ import { ArrowForwardIcon } from '@chakra-ui/icons';
 
 export const MenuConfig = [
   {
-    href: '#',
+    href: 'main',
     text: 'Чему вы научитесь'
   },
   {
@@ -14,7 +14,7 @@ export const MenuConfig = [
     text: 'Стоимость'
   },
   {
-    href: '#',
+    href: 'main',
     text: 'Контакты'
   }
 ];

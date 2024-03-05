@@ -13,13 +13,6 @@ module.exports = {
         exclude: /node_modules/,
         use: ['babel-loader']
       },
-      // {
-      //     test: /\.tsx?$/,
-      //     exclude: /node_modules/,
-      //     use: {
-      //         loader: 'ts-loader'
-      //     }
-      // },
       {
         test: /\.css$/,
         exclude: /node_modules/,
@@ -28,8 +21,7 @@ module.exports = {
       {
         test: /\.(png|svg|jpg|gif|ico)$/,
         exclude: /node_modules/,
-        // exclude: [/node_modules/, /\.(s?(a?|c)ss|js|html)$/],
-        use: ['file-loader']
+        type: 'asset/resource'
       }
     ]
   },
