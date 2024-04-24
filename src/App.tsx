@@ -7,8 +7,8 @@ import StartPage from './components/pages/StartPage';
 const App = () => (
   <Routes>
     <Route path="/" element={<Layout />}>
-      <Route index element={<MainPage />} />
-      {/* <Route index element={<StartPage />} /> */}
+      {/* <Route index element={<MainPage />} /> */}
+      <Route index element={<StartPage />} />
       <Route path="main" element={<MainPage />} />
       <Route path="contacts" />
     </Route>

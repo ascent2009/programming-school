@@ -11,7 +11,7 @@ const StartPage = () => {
   return (
     <Box as="main" w="87%" pt="37px" mx="auto" fontFamily="Gilroy-Regular" bg="transparent">
       <Test />
-      <SocialsIcons />
+      <SocialsIcons width="35%" />
       <Flex as="section" fontSize={13} mt={99} w="25%" gap="60px">
         <List
           bg="transparent"
@@ -26,7 +26,8 @@ const StartPage = () => {
               _hover={{
                 transition: '0.5s',
                 transform: 'scale(1.2) translate(10px)'
-              }}>
+              }}
+              _last={{ display: 'none' }}>
               <Link href={href}>{text}</Link>
             </ListItem>
           ))}
