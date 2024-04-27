@@ -42,6 +42,7 @@ module.exports = {
     extensions: ['.tsx', '.ts', '.js']
   },
   output: {
+    publicPath: '/programming-school/',
     filename: 'main.js',
     // filename: "bundle.[fullhash].js",
     path: path.resolve(__dirname, 'dist'),
