@@ -2,10 +2,6 @@ import VKSvg from '../../assets/vkontakte.svg';
 import FBSvg from '../../assets/facebook.svg';
 import YoutubeSvg from '../../assets/youtube.svg';
 import InstagramSvg from '../../assets/instagram.svg';
-import ManNotebookPng from '../../assets/man-at-notebook.png';
-import HandsPrintPng from '../../assets/printing-hands.png';
-import PersonsNotebookPng from '../../assets/two-at-pc.png';
-import HandsNotebookPng from '../../assets/hands-on-notebook.png';
 import PracticeSvg from '../../assets/practice.svg';
 import MethodsSvg from '../../assets/methods.svg';
 import PresentationSvg from '../../assets/presentation.svg';
@@ -59,25 +55,29 @@ export const MenuConfig = [
 
 export const ImagesConfig = [
   {
-    src: ManNotebookPng,
+    // src: ManNotebookPng,
+    src: 'https://firebasestorage.googleapis.com/v0/b/programming-school-cf3e0.appspot.com/o/man-at-notebook.png?alt=media&token=851768ff-13d4-4de7-aab3-84442dfe2d08',
     justifySelf: 'center',
     alt: 'man works on a notebook',
     alignSelf: ''
   },
   {
-    src: HandsPrintPng,
+    // src: HandsPrintPng,
+    src: 'https://firebasestorage.googleapis.com/v0/b/programming-school-cf3e0.appspot.com/o/printing-hands.png?alt=media&token=295457aa-f53b-4708-b854-9274446ea733',
     justifySelf: 'center',
     alt: 'printing hands',
     alignSelf: ''
   },
   {
-    src: PersonsNotebookPng,
+    // src: PersonsNotebookPng,
+    src: 'https://firebasestorage.googleapis.com/v0/b/programming-school-cf3e0.appspot.com/o/two-at-pc.png?alt=media&token=2f111ddc-5de0-4ba9-bd3c-2e9d3f82abc8',
     justifySelf: 'center',
     alt: 'two persons on a laptop',
     alignSelf: 'center'
   },
   {
-    src: HandsNotebookPng,
+    // src: HandsNotebookPng,
+    src: 'https://firebasestorage.googleapis.com/v0/b/programming-school-cf3e0.appspot.com/o/hands-on-notebook.png?alt=media&token=3e861401-184e-496a-b3a1-e4cc5fa7906a',
     justifySelf: 'center',
     alt: 'hands on a laptop keyboard',
     alignSelf: ''
@@ -205,3 +205,20 @@ export const tableConfig = [
   { block: 'Фреймворк Django', price: '14 900', period: 2 },
   { block: 'Разработка «боевого» проекта', price: '9 900', period: 1.5 }
 ];
+
+export const PNGlib = {
+  handsNotebook:
+    'https://firebasestorage.googleapis.com/v0/b/programming-school-cf3e0.appspot.com/o/hands-on-notebook.png?alt=media&token=3e861401-184e-496a-b3a1-e4cc5fa7906a',
+  handsPrint:
+    'https://firebasestorage.googleapis.com/v0/b/programming-school-cf3e0.appspot.com/o/printing-hands.png?alt=media&token=295457aa-f53b-4708-b854-9274446ea733',
+  manNotebook:
+    'https://firebasestorage.googleapis.com/v0/b/programming-school-cf3e0.appspot.com/o/man-at-notebook.png?alt=media&token=851768ff-13d4-4de7-aab3-84442dfe2d08',
+  personsNotebook:
+    'https://firebasestorage.googleapis.com/v0/b/programming-school-cf3e0.appspot.com/o/two-at-pc.png?alt=media&token=2f111ddc-5de0-4ba9-bd3c-2e9d3f82abc8',
+  circles:
+    'https://firebasestorage.googleapis.com/v0/b/programming-school-cf3e0.appspot.com/o/bg-circles.png?alt=media&token=a058d9b3-d65b-44be-8354-8caf6805b92f',
+  circlesInverted:
+    'https://firebasestorage.googleapis.com/v0/b/programming-school-cf3e0.appspot.com/o/bg-circles-inverted.png?alt=media&token=20d78341-6ea6-4e1c-80c4-cf73495b5f92',
+  video:
+    'https://firebasestorage.googleapis.com/v0/b/programming-school-cf3e0.appspot.com/o/video.png?alt=media&token=6892f04e-d7fa-4656-99d5-e82e8388dfb0'
+};

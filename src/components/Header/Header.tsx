@@ -135,7 +135,8 @@ const Header = () => {
           onClose();
           setIsLogin(false);
           setUser(res['email']);
-          navigate('/main' + `/${user}`.slice(0, `/${user}`.indexOf('@')));
+          // navigate('/main' + `/${user}`.slice(0, `/${user}`.indexOf('@')));
+          navigate('/main');
         }, 1000);
       } else {
         setAlert('Неверный логин или пароль');

@@ -22,16 +22,9 @@ import {
   Td,
   TableContainer
 } from '@chakra-ui/react';
-import HandsPrintPng from '../../assets/printing-hands.png';
-import CirclesPng from '../../assets/bg-circles.png';
-import CirclesInvertedPng from '../../assets/bg-circles-inverted.png';
 import DownArrowSvg from '../../assets/down-arrow.svg';
-import ManNotebookPng from '../../assets/man-at-notebook.png';
-import VideoPng from '../../assets/video.png';
 import PlaySvg from '../../assets/play.svg';
 import ArrowSvg from '../../assets/diagonal-arrow.svg';
-import PersonsNotebookPng from '../../assets/two-at-pc.png';
-import HandsNotebookPng from '../../assets/hands-on-notebook.png';
 import MegaphoneSvg from '../../assets/megaphone.svg';
 import Test from '../Test';
 import {
@@ -39,7 +32,8 @@ import {
   educationConfig,
   processConfig,
   costConfig,
-  tableConfig
+  tableConfig,
+  PNGlib
 } from './config';
 import Footer from '../Footer/Footer';
 
@@ -70,12 +64,20 @@ const Highlight = () => {
 };
 
 const MainPage = () => {
+  const {
+    handsNotebook,
+    handsPrint,
+    manNotebook,
+    personsNotebook,
+    circles,
+    circlesInverted,
+    video
+  } = PNGlib;
   const { colorMode } = useColorMode();
   const color = colorMode === 'light' ? '#22253B' : '#ffffff';
   const colorBorder = colorMode === 'light' ? '#f0f5f8' : 'black';
   const bottomBorder = colorMode === 'light' ? 'transparent' : '#F15525';
-  const bgImage =
-    colorMode === 'light' ? 'url(' + CirclesPng + ')' : 'url(' + CirclesInvertedPng + ')';
+  const bgImage = colorMode === 'light' ? 'url(' + circles + ')' : 'url(' + circlesInverted + ')';
   const bgRoot = colorMode === 'light' ? '#ffffff' : 'transparent';
   const bgBtn = colorMode === 'light' ? '#38BFF2' : '#F15525';
 
@@ -86,7 +88,6 @@ const MainPage = () => {
           as="section"
           m={0}
           mt="-1.3rem"
-          // fontFamily="Gilroy-Regular"
           bg={colorMode === 'light' ? '#eaf2f5' : 'transparent'}
           bgImage={bgImage}
           bgSize="75%"
@@ -134,7 +135,7 @@ const MainPage = () => {
                 </Stack>
               </GridItem>
               <GridItem w="fit-content" justifySelf="right">
-                <Image src={HandsPrintPng} alt="printing hands" />
+                <Image src={handsPrint} alt="printing hands" />
               </GridItem>
             </Grid>
           </Box>
@@ -149,7 +150,7 @@ const MainPage = () => {
             m="2rem auto"
             justify="center"
             gap={59}>
-            <Image src={ManNotebookPng} alt="man at notebook" mt={42} />
+            <Image src={manNotebook} alt="man at notebook" mt={42} />
             <Flex maxW={467} mt={78} direction="column" gap="1.6rem">
               <List display="flex" flexWrap="wrap" gap="0.63rem">
                 {technologiesConfig.map(({ title, bg }) => (
@@ -216,7 +217,7 @@ const MainPage = () => {
             готовые примеры и даже писать свой собственный код.
           </Text>
           <Box w="fit-content" mx="auto" position="relative">
-            <Image src={VideoPng} alt="video" objectFit="cover" />
+            <Image src={video} alt="video" objectFit="cover" />
             <Button
               bg="transparent"
               opacity={0.7}
@@ -292,7 +293,7 @@ const MainPage = () => {
             gap="1.9rem"
             alignItems="center">
             <GridItem bg={colorMode === 'light' ? '#eaf2f5' : 'transparent'} borderRadius={50}>
-              <Image src={PersonsNotebookPng} alt="two at notebook" p="2rem" />
+              <Image src={personsNotebook} alt="two at notebook" p="2rem" />
             </GridItem>
             <GridItem
               colSpan={2}
@@ -334,7 +335,7 @@ const MainPage = () => {
               </Flex>
             </GridItem>
             <GridItem bg={colorMode === 'light' ? '#eaf2f5' : 'transparent'} borderRadius={50}>
-              <Image src={HandsNotebookPng} alt="hands on keyboard" p="2rem" />
+              <Image src={handsNotebook} alt="hands on keyboard" p="2rem" />
             </GridItem>
           </Grid>
         </Box>

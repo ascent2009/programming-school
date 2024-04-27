@@ -28,10 +28,10 @@ module.exports = {
   devServer: {
     static: './dist'
   },
-  performance: {
-    maxEntrypointSize: 2048000,
-    maxAssetSize: 2048000
-  },
+  // performance: {
+  //   maxEntrypointSize: 256,
+  //   maxAssetSize: 256
+  // },
   plugins: [
     new HtmlWebpackPlugin({
       title: 'Development',
