@@ -1,3 +1,4 @@
+import { useParams } from 'react-router-dom';
 import {
   Box,
   Flex,
@@ -64,6 +65,7 @@ const Highlight = () => {
 };
 
 const MainPage = () => {
+  const { user } = useParams();
   const {
     handsNotebook,
     handsPrint,

@@ -10,6 +10,7 @@ const App = () => (
       {/* <Route index element={<MainPage />} /> */}
       <Route index element={<StartPage />} />
       <Route path="main" element={<MainPage />} />
+      <Route path="main/:userID" element={<MainPage />} />
       <Route path="contacts" />
     </Route>
     <Route

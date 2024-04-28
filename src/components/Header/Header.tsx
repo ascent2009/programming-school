@@ -1,3 +1,4 @@
+import { useParams } from 'react-router-dom';
 import { useState, useEffect, useCallback, memo } from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
@@ -46,6 +47,7 @@ interface IModal {
 type Login = Omit<IModal, 'firstName' | 'lastName'>;
 
 const Header = () => {
+  const { userID } = useParams();
   const { colorMode, toggleColorMode } = useColorMode();
   const { onOpen, isOpen, onClose } = useDisclosure();
   const {
@@ -136,7 +138,7 @@ const Header = () => {
           setIsLogin(false);
           setUser(res['email']);
           // navigate('/main' + `/${user}`.slice(0, `/${user}`.indexOf('@')));
-          navigate('/main');
+          navigate(`/main/${userID}`);
         }, 1000);
       } else {
         setAlert('Неверный логин или пароль');
