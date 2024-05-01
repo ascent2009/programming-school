@@ -1,6 +1,16 @@
-@font-face {
+/* @font-face {
   font-family: 'Gilroy-Regular';
   src: url(assets/fonts/gilroy/Gilroy-Regular.ttf);
+} */
+
+@font-face {
+  font-family: 'Gilroy-Regular';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Gilroy-Regular'), local('Gilroy-Regular'),
+    url('assets/fonts/gilroy/Gilroy-Regular.ttf');
+  /* format('ttf'); */
 }
 
 * {

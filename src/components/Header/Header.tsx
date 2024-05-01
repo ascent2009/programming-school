@@ -1,4 +1,4 @@
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import { useState, useEffect, useCallback, memo } from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
@@ -254,6 +254,7 @@ const Header = () => {
             </ButtonGroup>
           )}
         </Flex>
+        {/* <Link to="/main">To main</Link> */}
 
         <FormControl
           display="flex"

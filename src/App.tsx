@@ -3,6 +3,7 @@ import { Routes, Route } from 'react-router-dom';
 import Layout from './components/Layout';
 import MainPage from './components/pages/MainPage';
 import StartPage from './components/pages/StartPage';
+import NotFoundPage from './components/pages/NotFoundPage';
 
 const App = () => (
   <Routes>
@@ -13,12 +14,7 @@ const App = () => (
       <Route path="main/:userID" element={<MainPage />} />
       <Route path="contacts" />
     </Route>
-    <Route
-      path="*"
-      element={
-        <div style={{ margin: 'auto', color: 'red', fontSize: '10rem' }}>404 NotFoundPage</div>
-      }
-    />
+    <Route path="*" element={<NotFoundPage />} />
   </Routes>
 );
 
