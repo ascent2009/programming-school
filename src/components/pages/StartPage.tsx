@@ -1,4 +1,14 @@
-import { Box, Flex, SimpleGrid, Image, Link, List, ListItem, useColorMode } from '@chakra-ui/react';
+import {
+  Box,
+  Flex,
+  SimpleGrid,
+  Image,
+  Link,
+  List,
+  ListItem,
+  useColorMode,
+  Skeleton
+} from '@chakra-ui/react';
 import { MenuConfig, ImagesConfig } from './config';
 import SocialsIcons from '../SocialsIcons';
 import Test from '../Test';
@@ -35,12 +45,9 @@ const StartPage = () => {
       </Flex>
       <SimpleGrid as="section" columns={2} spacing={16} w="77%" mx="auto" mt={262} pb={189}>
         {ImagesConfig.map(({ src, justifySelf, alignSelf, alt }) => (
-          <Image
-            key={alt}
-            src={src}
-            justifySelf={justifySelf}
-            alignSelf={alignSelf}
-            alt={alt}></Image>
+          <Skeleton key={alt} isLoaded startColor="pink.500" endColor="orange.500" fadeDuration={1}>
+            <Image src={src} justifySelf={justifySelf} alignSelf={alignSelf} alt={alt}></Image>
+          </Skeleton>
         ))}
       </SimpleGrid>
     </Box>

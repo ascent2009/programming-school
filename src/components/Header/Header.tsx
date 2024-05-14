@@ -1,7 +1,6 @@
-import { useParams, Link } from 'react-router-dom';
+import { useParams, useNavigate, Link } from 'react-router-dom';
 import { useState, useEffect, useCallback, memo } from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
-import { useNavigate } from 'react-router-dom';
 import {
   Box,
   Flex,
@@ -47,7 +46,7 @@ interface IModal {
 type Login = Omit<IModal, 'firstName' | 'lastName'>;
 
 const Header = () => {
-  const { userID } = useParams();
+  // const { userID } = useParams();
   const { colorMode, toggleColorMode } = useColorMode();
   const { onOpen, isOpen, onClose } = useDisclosure();
   const {
@@ -138,7 +137,8 @@ const Header = () => {
           setIsLogin(false);
           setUser(res['email']);
           // navigate('/main' + `/${user}`.slice(0, `/${user}`.indexOf('@')));
-          navigate(`/main/${userID}`);
+          // navigate(`/main/${userID}`);
+          navigate(`/main`);
         }, 1000);
       } else {
         setAlert('Неверный логин или пароль');
@@ -196,7 +196,9 @@ const Header = () => {
           align="center"
           justify="space-between">
           <Box p="16px 21px" bg="transparent" borderRadius="full">
-            <Image src={LogoSvg} alt="logo" />
+            <Link to="/">
+              <Image src={LogoSvg} alt="logo" />
+            </Link>
           </Box>
 
           <Breadcrumb
@@ -220,7 +222,11 @@ const Header = () => {
           </Breadcrumb>
           {user ? (
             <ButtonGroup bg="transparent" mr={11}>
-              <Button color={color} bg="transparent" borderRadius="full">
+              <Button
+                color={color}
+                bg="transparent"
+                borderRadius="full"
+                onClick={() => navigate(`/main`)}>
                 {user}
               </Button>
               <Button
