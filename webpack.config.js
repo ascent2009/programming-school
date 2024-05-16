@@ -3,10 +3,10 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 module.exports = {
-  mode: process.env.NODE_ENV || 'production',
-  // mode: 'development',
+  // mode: process.env.NODE_ENV || 'production',
+  mode: 'development',
   entry: './src/index.tsx',
-  // devtool: 'inline-source-map',
+  devtool: 'source-map',
   module: {
     rules: [
       {
@@ -27,7 +27,7 @@ module.exports = {
     ]
   },
   devServer: {
-    static: './public'
+    static: './src'
   },
   performance: {
     // maxEntrypointSize: 256,
@@ -45,7 +45,7 @@ module.exports = {
     extensions: ['.tsx', '.ts', '.js']
   },
   output: {
-    publicPath: '/programming-school/',
+    // publicPath: '/programming-school/',
     filename: 'main.js',
     // filename: "bundle.[fullhash].js",
     path: path.resolve(__dirname, 'public'),
