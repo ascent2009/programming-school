@@ -7,7 +7,7 @@ import FBOrangeSvg from '../assets/facebook-orange.svg';
 import { SocialsConfig } from './pages/config';
 
 interface ISocial {
-  width: number | string;
+  width: string[] | number | string;
 }
 
 const SocialsIcons: FC<ISocial> = ({ width }) => {
@@ -16,7 +16,7 @@ const SocialsIcons: FC<ISocial> = ({ width }) => {
   const darkSocials = colorMode === 'light' ? false : true;
 
   return (
-    <Flex as="section" mt={50} w={width} justify="space-between">
+    <Flex as="section" mt={50} w={width} justify="space-between" mx={['auto', 'auto', 'auto', 0]}>
       {!darkSocials ? (
         <Flex w="40%" justify="space-between">
           {SocialsConfig.map(({ src, alt }) => (

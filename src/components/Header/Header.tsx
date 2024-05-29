@@ -27,14 +27,17 @@ import {
   ModalCloseButton,
   useDisclosure,
   Input,
-  FormErrorMessage
+  FormErrorMessage,
+  IconButton
 } from '@chakra-ui/react';
 
-import { SunIcon, MoonIcon, ViewIcon } from '@chakra-ui/icons';
+import { SunIcon, MoonIcon, ViewIcon, HamburgerIcon } from '@chakra-ui/icons';
 import { LuLogOut } from 'react-icons/lu';
+import { MdAccountCircle } from 'react-icons/md';
 
 import LogoSvg from '../../assets/logo.svg';
 import { MenuConfig, ButtonGroupConfig } from './config';
+import DrawerMobile from '../Drawer/Drawer';
 
 interface IModal {
   firstName: string;
@@ -49,6 +52,7 @@ const Header = () => {
   // const { userID } = useParams();
   const { colorMode, toggleColorMode } = useColorMode();
   const { onOpen, isOpen, onClose } = useDisclosure();
+  const { isOpen: isOpenDrawer, onOpen: onOpenDrawer, onClose: onCloseDrawer } = useDisclosure();
   const {
     register,
     handleSubmit,
@@ -183,19 +187,20 @@ const Header = () => {
         w="87%"
         display="flex"
         mx="auto"
-        align="center"
+        align={['flex-end', 'flex-end', 'flex-end', 'center']}
         justify="space-between"
-        spacing={8}>
+        flexDirection={['column-reverse', 'column-reverse', 'column-reverse', 'row']}
+        spacing={[0, 0, 0, 8]}>
         <Flex
           fontSize={13}
           // color="#22253B"
           w="92%"
           bg="white"
-          m=" 57px auto 22px"
+          m={['10px auto auto', '10px auto auto', '10px auto auto', '57px auto 22px']}
           borderRadius="full"
           align="center"
           justify="space-between">
-          <Box p="16px 21px" bg="transparent" borderRadius="full">
+          <Box p="16px 21px" bg="transparent" borderRadius="full" minW={95}>
             <Link to="/">
               <Image src={LogoSvg} alt="logo" />
             </Link>
@@ -205,11 +210,12 @@ const Header = () => {
             separator=" "
             bg="transparent"
             w="43%"
-            display="flex"
+            // display="flex"
             ml={50}
             spacing={9}
             flex="1"
-            color={color}>
+            color={color}
+            display={['none', 'none', 'none', 'flex']}>
             {MenuConfig.map(({ href, text }) => (
               <BreadcrumbItem key={text}>
                 <BreadcrumbLink
@@ -221,14 +227,26 @@ const Header = () => {
             ))}
           </Breadcrumb>
           {user ? (
-            <ButtonGroup bg="transparent" mr={11}>
+            <ButtonGroup bg="transparent" mr={11} alignItems="center">
               <Button
                 color={color}
                 bg="transparent"
                 borderRadius="full"
-                onClick={() => navigate(`/main`)}>
+                onClick={() => navigate(`/main`)}
+                display={['none', 'none', 'none', 'flex']}>
                 {user}
               </Button>
+              <IconButton
+                aria-label="Login"
+                icon={<MdAccountCircle />}
+                color={bg}
+                display={['flex', 'flex', 'flex', 'none']}
+                bg="transparent"
+                _hover={{ bg: 'transparent' }}
+                size="lg"
+                mr="-1rem"
+                title={user}
+              />
               <Button
                 onClick={onLogout}
                 color={color}
@@ -252,13 +270,25 @@ const Header = () => {
                   p="8.87px 14.95px"
                   cursor="pointer"
                   onClick={() => onLogin(id)}
-                  _hover={{ bg: bg, color: '#FFFFFF', transition: '0.5s' }}>
+                  _hover={{ bg: bg, color: '#FFFFFF', transition: '0.5s' }}
+                  _first={{ display: ['none', 'none', 'none', 'flex'] }}>
                   {icon}
                   {text}
                 </Button>
               ))}
             </ButtonGroup>
           )}
+          <IconButton
+            aria-label="hamburger"
+            icon={<HamburgerIcon />}
+            color={bg}
+            display={['flex', 'flex', 'flex', 'none']}
+            bg="transparent"
+            _hover={{ bg: 'transparent' }}
+            size="lg"
+            mr="0.5rem"
+            onClick={onOpenDrawer}
+          />
         </Flex>
         {/* <Link to="/main">To main</Link> */}
 
@@ -267,7 +297,8 @@ const Header = () => {
           alignItems="center"
           justifyContent="space-between"
           maxW="6%"
-          mt={35}>
+          mt={[3, 3, 3, 35]}
+          mr={['4rem', '4rem', '4rem', 'auto']}>
           <FormLabel htmlFor="light" title="Дневной режим" m={0}>
             <SunIcon color="#38BFF2" opacity={opacityLight} />
           </FormLabel>
@@ -296,7 +327,8 @@ const Header = () => {
           fontFamily="Gilroy-Regular"
           bg={bgModal}
           as="form"
-          onSubmit={handleSubmit(!isLogin ? onSubmit : onSubmitLogin)}>
+          onSubmit={handleSubmit(!isLogin ? onSubmit : onSubmitLogin)}
+          w={['95%', '95%', '95%', '100%']}>
           <ModalHeader>{!isLogin ? 'Создать учетную запись' : 'Войти в профиль'}</ModalHeader>
           <ModalCloseButton />
           <ModalBody pb={6}>
@@ -404,6 +436,12 @@ const Header = () => {
           </ModalFooter>
         </ModalContent>
       </Modal>
+      <DrawerMobile
+        isOpenDrawer={isOpenDrawer}
+        onCloseDrawer={onCloseDrawer}
+        user={user}
+        onLogin={onLogin}
+      />
     </Box>
   );
 };

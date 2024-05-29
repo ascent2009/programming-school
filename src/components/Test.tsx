@@ -27,7 +27,7 @@ interface ITest {
   testResult?: boolean;
   correctAnswer?: boolean;
   title: string;
-  width: string;
+  width: string[];
   paddY: string | number;
   paddX: string | number;
   align: string;
@@ -45,7 +45,7 @@ const Heading: React.FC<ITest> = ({
   align,
   icon
 }) => (
-  <ModalHeader fontSize={24} textAlign="center" w="70%" mt={55} mb={22} p={0}>
+  <ModalHeader fontSize={[20, 20, 20, 24]} textAlign="center" w="70%" mt={55} mb={22} p={0}>
     {!stepOne ? (
       'Перед тем, как приступить к обучению, необходимо пройти небольшой тест'
     ) : (
@@ -93,7 +93,7 @@ const Test = () => {
 
   const bg = colorMode === 'light' ? '#38BFF2' : '#F15525';
   return (
-    <>
+    <Flex justify={['center', 'center', 'center', 'flex-start']}>
       <Button
         onClick={onOpen}
         bg={bg}
@@ -115,13 +115,14 @@ const Test = () => {
           fontWeight="normal"
           borderRadius={30}
           alignItems="center"
-          justifyContent="flex-start">
+          justifyContent="flex-start"
+          w={['95%', '95%', '95%', '100%']}>
           <Heading
             stepOne={stepOne}
             correctAnswer={correctAnswer}
             testResult={testResult}
             title="ЗАДАНИЕ №1"
-            width="21%"
+            width={['40%', '40%', '40%', '21%']}
             paddY={2}
             paddX="auto"
             align="flex-start"
@@ -177,7 +178,11 @@ const Test = () => {
                 <Image src={ArrowSvg} alt="diagonal arrow" ml={4} boxSize={3} />
               </Button>
             ) : (
-              <Flex justify={!correctAnswer ? 'space-between' : 'flex-end'} align="end" w="100%">
+              <Flex
+                justify={!correctAnswer ? 'space-between' : 'flex-end'}
+                align={['center', 'center', 'center', 'end']}
+                w="100%"
+                direction={['column', 'column', 'column', 'row']}>
                 {!correctAnswer ? (
                   <RadioGroup onChange={setValue} value={value}>
                     <Stack>
@@ -219,8 +224,9 @@ const Test = () => {
                 ) : null}
                 <Button
                   colorScheme="blue"
-                  p={[16, 22]}
+                  p="16px 22px"
                   mr={1}
+                  mt={['1rem', '1rem', '1rem', 'auto']}
                   bg={bg}
                   onClick={
                     !correctAnswer
@@ -257,13 +263,14 @@ const Test = () => {
           fontWeight="normal"
           borderRadius={30}
           alignItems="center"
-          justifyContent="flex-start">
+          justifyContent="flex-start"
+          w={['95%', '95%', '95%', '100%']}>
           <Heading
             stepOne={stepOne}
             correctAnswer={correctAnswer}
             testResult={testResult}
             title="НAБРАНО 4/4"
-            width="30%"
+            width={['60%', '60%', '60%', '30%']}
             paddY={4}
             paddX={8}
             align="center"
@@ -286,7 +293,7 @@ const Test = () => {
           <ModalFooter mb={10} p={0} w="70%" justifyContent="center">
             <Button
               colorScheme="blue"
-              p={[16, 22]}
+              p="16px 22px"
               mr={1}
               bg={bg}
               onClick={() => {
@@ -311,7 +318,7 @@ const Test = () => {
           </ModalFooter>
         </ModalContent>
       </Modal>
-    </>
+    </Flex>
   );
 };
 
