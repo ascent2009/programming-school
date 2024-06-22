@@ -70,7 +70,8 @@ const StartPage = () => {
               justifySelf={justifySelf}
               alignSelf={alignSelf}
               alt={alt}
-              loading="lazy"></Image>
+              loading="lazy"
+            />
           </Skeleton>
         ))}
       </SimpleGrid>

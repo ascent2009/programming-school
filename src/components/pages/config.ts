@@ -87,31 +87,38 @@ export const ImagesConfig = [
 export const technologiesConfig = [
   {
     title: 'Язык программирования Python',
-    bg: '#5096FF'
+    bg: '#5096FF',
+    spanCol: 'span 3 / 4'
   },
   {
     title: 'Сети',
-    bg: '#FFB359'
+    bg: '#FFB359',
+    spanCol: '1 / 2'
   },
   {
     title: 'Базы данных',
-    bg: '#FF6F50'
+    bg: '#FF6F50',
+    spanCol: 'span 2 / 4'
   },
   {
     title: 'Фреймворки Flask и Django',
-    bg: '#4BD071'
+    bg: '#4BD071',
+    spanCol: 'span 3 / 4'
   },
   {
     title: 'Отладка и тестирование',
-    bg: '#50C0FF'
+    bg: '#50C0FF',
+    spanCol: 'span 3 / 4'
   },
   {
     title: 'Docker',
-    bg: '#4B77B9'
+    bg: '#4B77B9',
+    spanCol: 'span 2 / 3'
   },
   {
     title: 'Git',
-    bg: '#AF93FF'
+    bg: '#AF93FF',
+    spanCol: '3 / 4'
   }
 ];
 

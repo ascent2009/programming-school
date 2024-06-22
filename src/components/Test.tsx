@@ -30,7 +30,7 @@ interface ITest {
   width: string[];
   paddY: string | number;
   paddX: string | number;
-  align: string;
+  align: string[];
   icon?: JSX.Element | null;
 }
 
@@ -98,6 +98,7 @@ const Test = () => {
         onClick={onOpen}
         bg={bg}
         p="35px 41px"
+        w={['90%', '90%', '90%', 'auto']}
         borderRadius="full"
         fontSize={18}
         fontWeight={400}
@@ -115,7 +116,7 @@ const Test = () => {
           fontWeight="normal"
           borderRadius={30}
           alignItems="center"
-          justifyContent="flex-start"
+          justifyContent={['center', 'center', 'center', 'flex-start']}
           w={['95%', '95%', '95%', '100%']}>
           <Heading
             stepOne={stepOne}
@@ -125,7 +126,7 @@ const Test = () => {
             width={['40%', '40%', '40%', '21%']}
             paddY={2}
             paddX="auto"
-            align="flex-start"
+            align={['center', 'center', 'center', 'flex-start']}
             icon={null}
           />
           <ModalCloseButton opacity={0.6} _hover={{ opacity: '1' }} />
