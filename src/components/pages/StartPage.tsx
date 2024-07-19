@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import {
   Box,
   Flex,
@@ -19,10 +20,22 @@ const StartPage = () => {
   const color = colorMode === 'light' ? '#22253B' : '#F15525';
 
   return (
-    <Box as="main" w="87%" pt="37px" mx="auto" fontFamily="Gilroy-Regular" bg="transparent">
+    <Box
+      as="main"
+      w="87%"
+      pt="37px"
+      mx={['auto', 'auto', 'auto', 'auto']}
+      fontFamily="Gilroy-Regular"
+      bg="transparent">
       <Test />
-      <SocialsIcons width="35%" />
-      <Flex as="section" fontSize={13} mt={99} w="25%" gap="60px">
+      <SocialsIcons width={['87%', '87%', '87%', '35%']} />
+      <Flex
+        as="section"
+        fontSize={13}
+        mt={99}
+        w="25%"
+        gap="60px"
+        display={['none', 'none', 'none', 'flex']}>
         <List
           bg="transparent"
           w="40%"
@@ -43,10 +56,23 @@ const StartPage = () => {
           ))}
         </List>
       </Flex>
-      <SimpleGrid as="section" columns={2} spacing={16} w="77%" mx="auto" mt={262} pb={189}>
+      <SimpleGrid
+        as="section"
+        columns={[1, 1, 1, 2]}
+        spacing={16}
+        w="77%"
+        mx="auto"
+        mt={[100, 100, 100, 262]}
+        pb={[70, 70, 70, 189]}>
         {ImagesConfig.map(({ src, justifySelf, alignSelf, alt }) => (
           <Skeleton key={alt} isLoaded startColor="pink.500" endColor="orange.500" fadeDuration={1}>
-            <Image src={src} justifySelf={justifySelf} alignSelf={alignSelf} alt={alt}></Image>
+            <Image
+              src={src}
+              justifySelf={justifySelf}
+              alignSelf={alignSelf}
+              alt={alt}
+              loading="lazy"
+            />
           </Skeleton>
         ))}
       </SimpleGrid>
@@ -54,4 +80,4 @@ const StartPage = () => {
   );
 };
 
-export default StartPage;
+export default memo(StartPage);

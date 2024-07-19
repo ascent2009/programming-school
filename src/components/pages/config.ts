@@ -55,28 +55,24 @@ export const MenuConfig = [
 
 export const ImagesConfig = [
   {
-    // src: ManNotebookPng,
     src: 'https://firebasestorage.googleapis.com/v0/b/programming-school-cf3e0.appspot.com/o/man-at-notebook.png?alt=media&token=851768ff-13d4-4de7-aab3-84442dfe2d08',
     justifySelf: 'center',
     alt: 'man works on a notebook',
     alignSelf: ''
   },
   {
-    // src: HandsPrintPng,
     src: 'https://firebasestorage.googleapis.com/v0/b/programming-school-cf3e0.appspot.com/o/printing-hands.png?alt=media&token=295457aa-f53b-4708-b854-9274446ea733',
     justifySelf: 'center',
     alt: 'printing hands',
     alignSelf: ''
   },
   {
-    // src: PersonsNotebookPng,
     src: 'https://firebasestorage.googleapis.com/v0/b/programming-school-cf3e0.appspot.com/o/two-at-pc.png?alt=media&token=2f111ddc-5de0-4ba9-bd3c-2e9d3f82abc8',
     justifySelf: 'center',
     alt: 'two persons on a laptop',
     alignSelf: 'center'
   },
   {
-    // src: HandsNotebookPng,
     src: 'https://firebasestorage.googleapis.com/v0/b/programming-school-cf3e0.appspot.com/o/hands-on-notebook.png?alt=media&token=3e861401-184e-496a-b3a1-e4cc5fa7906a',
     justifySelf: 'center',
     alt: 'hands on a laptop keyboard',
@@ -87,31 +83,38 @@ export const ImagesConfig = [
 export const technologiesConfig = [
   {
     title: 'Язык программирования Python',
-    bg: '#5096FF'
+    bg: '#5096FF',
+    spanCol: 'span 3 / 4'
   },
   {
     title: 'Сети',
-    bg: '#FFB359'
+    bg: '#FFB359',
+    spanCol: '1 / 2'
   },
   {
     title: 'Базы данных',
-    bg: '#FF6F50'
+    bg: '#FF6F50',
+    spanCol: 'span 2 / 4'
   },
   {
     title: 'Фреймворки Flask и Django',
-    bg: '#4BD071'
+    bg: '#4BD071',
+    spanCol: 'span 3 / 4'
   },
   {
     title: 'Отладка и тестирование',
-    bg: '#50C0FF'
+    bg: '#50C0FF',
+    spanCol: 'span 3 / 4'
   },
   {
     title: 'Docker',
-    bg: '#4B77B9'
+    bg: '#4B77B9',
+    spanCol: 'span 2 / 3'
   },
   {
     title: 'Git',
-    bg: '#AF93FF'
+    bg: '#AF93FF',
+    spanCol: '3 / 4'
   }
 ];
 

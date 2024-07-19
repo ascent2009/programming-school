@@ -17,15 +17,8 @@ import {
 const Auth = () => {
   const { isOpen, onClose } = useDisclosure();
 
-  // const initialRef = useRef(null);
-  // const finalRef = useRef(null);
-
   return (
-    <Modal
-      // initialFocusRef={initialRef}
-      // finalFocusRef={finalRef}
-      isOpen={isOpen}
-      onClose={onClose}>
+    <Modal isOpen={isOpen} onClose={onClose}>
       <ModalOverlay />
       <ModalContent>
         <ModalHeader>Create your account</ModalHeader>
@@ -33,7 +26,7 @@ const Auth = () => {
         <ModalBody pb={6}>
           <FormControl>
             <FormLabel>First name</FormLabel>
-            <Input /*ref={initialRef}*/ placeholder="First name" />
+            <Input placeholder="First name" />
           </FormControl>
 
           <FormControl mt={4}>

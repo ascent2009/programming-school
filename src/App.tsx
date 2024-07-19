@@ -1,6 +1,6 @@
 import './App.css';
-// import { Routes, Route } from 'react-router-dom';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+
 import Layout from './components/Layout';
 import MainPage from './components/pages/MainPage';
 import StartPage from './components/pages/StartPage';
@@ -18,7 +18,6 @@ const router = createBrowserRouter([
         children: [
           {
             index: true,
-            // path: '/',
             element: <StartPage />
           },
           {
@@ -35,18 +34,6 @@ const router = createBrowserRouter([
   }
 ]);
 
-const App = () => (
-  <RouterProvider router={router} />
-  // <Routes>
-  //   <Route path="/" element={<Layout />}>
-  //     {/* <Route index element={<MainPage />} /> */}
-  //     <Route index element={<StartPage />} />
-  //     <Route path="main" element={<MainPage />} />
-  //     <Route path="main/:userID" element={<MainPage />} />
-  //     <Route path="contacts" />
-  //   </Route>
-  //   <Route path="*" element={<NotFoundPage />} />
-  // </Routes>
-);
+const App = () => <RouterProvider router={router} />;
 
 export default App;
