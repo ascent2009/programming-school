@@ -66,7 +66,7 @@ module.exports = {
   output: {
     publicPath: '/',
     filename: 'main.js',
-    path: path.resolve(__dirname, '/build'),
+    path: path.resolve(__dirname, 'build'),
     clean: true
   }
 };
