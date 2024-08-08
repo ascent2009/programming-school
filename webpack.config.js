@@ -62,7 +62,7 @@ module.exports = {
     extensions: ['.tsx', '.ts', '.js']
   },
   output: {
-    // publicPath: '/programming-school/',
+    publicPath: '/',
     filename: 'main.js',
     path: path.resolve(__dirname, 'build'),
     clean: true
