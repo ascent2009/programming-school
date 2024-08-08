@@ -1,7 +1,7 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+// const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
   // mode: process.env.NODE_ENV || 'production',
@@ -22,9 +22,9 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        // exclude: /node_modules/,
-        // use: ['style-loader', 'css-loader']
-        use: [MiniCssExtractPlugin.loader, 'css-loader']
+        exclude: /node_modules/,
+        use: ['style-loader', 'css-loader']
+        // use: [MiniCssExtractPlugin.loader, 'css-loader']
       },
       {
         test: /\.(png|svg|jpg|gif|ico)$/,
@@ -55,8 +55,10 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: './src/index.html'
     }),
-    new BundleAnalyzerPlugin({ generateStatsFile: true }),
-    new MiniCssExtractPlugin()
+    new BundleAnalyzerPlugin({ generateStatsFile: true })
+    // new MiniCssExtractPlugin({
+    //   filename: '[name].css'
+    // })
   ],
   resolve: {
     extensions: ['.tsx', '.ts', '.js']
@@ -64,7 +66,7 @@ module.exports = {
   output: {
     publicPath: '/',
     filename: 'main.js',
-    path: path.resolve(__dirname, 'build'),
+    path: path.resolve(__dirname, '/build'),
     clean: true
   }
 };
