@@ -35,7 +35,7 @@ const router = createBrowserRouter(
     }
   ],
   {
-    basename: '/programming-school'
+    basename: window.location.pathname || ''
   }
 );
 
