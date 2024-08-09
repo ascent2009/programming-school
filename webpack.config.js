@@ -4,8 +4,8 @@ const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPl
 // const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
-  // mode: process.env.NODE_ENV || 'production',
-  mode: 'production',
+  mode: process.env.NODE_ENV || 'production',
+  // mode: 'development',
   optimization: {
     emitOnErrors: true
   },
