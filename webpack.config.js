@@ -5,7 +5,7 @@ const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPl
 
 module.exports = {
   // mode: process.env.NODE_ENV || 'production',
-  mode: 'development',
+  mode: 'production',
   optimization: {
     emitOnErrors: true
   },
