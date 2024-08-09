@@ -7,32 +7,37 @@ import StartPage from './components/pages/StartPage';
 import NotFoundPage from './components/pages/NotFoundPage';
 import ErrorPage from './components/pages/error-page';
 
-const router = createBrowserRouter([
+const router = createBrowserRouter(
+  [
+    {
+      path: '/',
+      element: <Layout />,
+      errorElement: <ErrorPage />,
+      children: [
+        {
+          errorElement: <ErrorPage />,
+          children: [
+            {
+              index: true,
+              element: <StartPage />
+            },
+            {
+              path: 'main',
+              element: <MainPage />
+            },
+            {
+              path: '*',
+              element: <NotFoundPage />
+            }
+          ]
+        }
+      ]
+    }
+  ],
   {
-    path: '/',
-    element: <Layout />,
-    errorElement: <ErrorPage />,
-    children: [
-      {
-        errorElement: <ErrorPage />,
-        children: [
-          {
-            index: true,
-            element: <StartPage />
-          },
-          {
-            path: 'main',
-            element: <MainPage />
-          },
-          {
-            path: '*',
-            element: <NotFoundPage />
-          }
-        ]
-      }
-    ]
+    basename: '/programming-school'
   }
-]);
+);
 
 const App = () => <RouterProvider router={router} />;
 
